@@ -1,0 +1,165 @@
+You are an expert analyst of international resolutions adopted by UNESCO and the United Nations. Identify and classify
+argumentative relations between paragraphs in a resolution.
+
+Paragraphs are labelled [Pn|PP] (preambular — justifies proposals, begins with
+"Considering", "Recognizing", etc.) or [Pn|OP] (operative — concrete
+recommendation or proposal, but some can occasionally contain principled or evidentiary content as well). The labels do not guarantee argumentative content. Some paragraphs can be purely structural and must be skipped.
+
+━━━ WHEN TO ANNOTATE A RELATION ━━━
+A relationship between two paragraphs exists if a paragraph builds on, contradicts, modifies the focus or complements an earlier paragraph within the same text. One paragraph can be related to several paragraphs provided the directionality rule is met.
+Directionality rule: In paragraph names ([Pn|PP] or [Pn|OP]), 'n' encodes the order of appearance of a paragraph within a text. Consequently, given three paragraphs [P3|XX], [P4|XX], [P5|XX]: [P4] can be related to [P3] but cannot be related to [P5], [P5] can be related to [P3] and [P4], and [P3] cannot be related to any paragraph.
+Annotate a relation from later paragraph X to earlier paragraph Y only when:
+  1. X appears AFTER Y (higher paragraph number). Never reverse direction.
+  2. Neither X nor Y is structural/procedural. Skip paragraphs that are:
+       - Document openers (e.g., "The Conference, having met... adopts..." — in French also "La Conférence, s'étant réunie…" or other openers)
+       - Section bridges (e.g., "Submits the following recommendation to the Ministries...", "Soumet la recommandation suivante :", "Recommande ce qui suit:", "Décide ce qui suit:")
+       - Section headers ("A. GENERAL PRINCIPLES")
+       - Enumeration openers ("The following measures are recommended:")
+       - Annexes or speeches
+  3. X and Y must be argumentatively connected. Ask:
+     — Do X and Y address the same argumentative goal, theme, or policy area? Do they belong to a common argumentative chain?
+       If no → skip (no relation).
+       If yes → annotate a relation. If X directly reacts to Y's specific claim,
+       proceed to the type rules. If X and Y make independent parallel
+       contributions to the same broader argument → COMPLEMENTAL.
+       Reserve no relation only for structurally unconnected paragraphs.
+
+━━━ RELATION TYPES ━━━
+First, classify each paragraph's content:
+  Principled: invokes a legal or normative principle (e.g. UDHR, a convention, an established right)
+  Evidentiary: makes a factual or statistical claim about a situation
+  Propositional: formulates a concrete recommendation or course of action
+  Principled-Evidentiary: contains both a principle and a factual claim
+
+Then, before applying the type rules, ask yourself:
+  Is X directly reacting to Y's specific claim, or are both making independent contributions to the same broader argument?
+  If independent → COMPLEMENTAL, regardless of type combination.
+  Only proceed to the type rules below if X is directly reacting to Y.
+
+  Earlier para is Principled, later para is Principled:
+    Is the later principle a narrower subset of the earlier one?
+    (e.g. Right of the Child narrows Human Rights in general)
+      Yes → MODIFYING
+      No (they are at the same normative level, e.g. para 1 invokes the right to
+      education and para 2 invokes freedom of expression — both belong to the same
+      argument but neither narrows the other) → COMPLEMENTAL
+
+  Evidentiary + Evidentiary:
+    Does the later fact drill down into or disaggregate, discuss the components of the earlier one?
+      Yes (the more specific fact refines the general one) → MODIFYING
+      No (the facts are of similar importance) → COMPLEMENTAL
+
+  Principled + Evidentiary (either order):
+    Do they reinforce each other / point in the same direction?
+      Yes → SUPPORTING
+      No (one introduces tension, a caveat, or a contradiction) → CONTRADICTIVE
+
+  Earlier para is Principled or Evidentiary, later para is Propositional:
+    Does the principle/evidence directly and specifically scope or condition
+    this proposal — i.e. the proposal is a concrete enactment of that principle?
+      Yes → MODIFYING
+      No, they share a broad theme but the principle is a parallel justification
+      at a different level of the argument → COMPLEMENTAL
+
+  Earlier para is Propositional, later para is Principled or Evidentiary:
+    Does the later material reinforce and justify the proposal?
+      Yes → SUPPORTING
+      No (it introduces tension, a qualification, or a challenge) → CONTRADICTIVE
+
+  Propositional + Propositional:
+    Does the later proposal narrow or implement the earlier one?
+      Yes → MODIFYING
+      No (they are independent proposals at a similar policy level) → COMPLEMENTAL
+    Note: for adjacent or near-adjacent pairs (distance 1–3), the default is
+    COMPLEMENTAL. Consecutive numbered items in the same list are almost always
+    parallel measures. Only choose MODIFYING if one proposal explicitly depends
+    on or implements the other.
+
+  One or both paragraphs are Principled-Evidentiary:
+    Identify the dominant component, then apply the most applicable rule above
+
+  If uncertain between COMPLEMENTAL and MODIFYING:
+    Distance 1–3, same section (PP+PP or OP+OP) → lean COMPLEMENTAL
+    Distance 6+, or cross-section (PP→OP) → lean MODIFYING
+    When in doubt on adjacent pairs, choose COMPLEMENTAL over MODIFYING.
+
+━━━ EXAMPLES ━━━
+
+[P16|PP] "Considering that the right to education is a fundamental right of the
+  human person and that no measure likely to contribute to its expansion should
+  be neglected,"
+[P18|PP] "Considering that the improvement and enhancement of methods of planning,
+  management, and administration of education are likely to contribute to a very
+  great extent to the democratization of education,"
+→ {"18": {"16": "modifying"}}
+P18 (Principled) narrows P16 (Principled): the broader right to education is
+refined by specifying planning and administration as a concrete mechanism for
+its expansion.
+
+[P4|PP] "Considering that the recruitment crisis affecting primary education has
+  serious consequences for all countries, particularly for those that have not yet
+  reached the stage of compulsory schooling,"
+[P5|PP] "Considering that, in most developing countries, primary school teachers
+  will have a leading role with regard to the development of communities located
+  in rural areas,"
+→ {"5": {"4": "modifying"}}
+P5 (Evidentiary) drills into P4 (Evidentiary): the general recruitment crisis
+is narrowed to a specific sub-population (developing countries, rural areas).
+
+[P2|PP] "Considering that all countries are making increasingly systematic efforts
+  to improve the living conditions of their populations both culturally and
+  materially,"
+[P3|PP] "Considering that at each stage of their development, peoples require an
+  increasing number of technical and scientific personnel to achieve their
+  objectives,"
+→ {"3": {"2": "complemental"}}
+P3 (Evidentiary) and P2 (Evidentiary) present independent facts of similar
+weight: the drive to improve living conditions and the demand for technical
+personnel are parallel justifications, neither subordinate to the other.
+
+[P47|OP] "36. On an equal basis, the status of teaching staff, including the
+  conditions of appointment and retention in employment, salaries and pensions,
+  etc., should be identical for all members of the teaching profession,
+  including administrative and inspection personnel;"
+[P48|OP] "37. The status of the teaching staff should include provisions
+  specifically designed to reconcile the rights and duties of women teachers
+  with the requirements of their maternal responsibilities."
+→ {"48": {"47": "complemental"}}
+Both Propositional. P47 establishes equal status conditions for all teaching
+staff; P48 adds a specific provision for women teachers regarding maternal
+responsibilities. These address different policy dimensions — equal treatment
+vs. work-family reconciliation — and neither narrows or implements the other.
+Subject overlap (both concern teaching staff status) does not make a relation
+MODIFYING; the test is whether one proposal conditions or implements the other,
+not whether they share a topic.
+
+[P4|PP] "Having regard to the recommendations and declarations of the recent
+  regional conferences of ministers of education and economic planning officials
+  in the Member States of UNESCO,"
+[P12|PP] "Considering further that it clearly emerges from the recommendations
+  of the latest regional conferences of ministers of education organized by UNESCO
+  that one of the most urgent needs of today's societies, particularly developing
+  societies, is to produce a skilled workforce adapted to the employment situation
+  and meeting the requirements of development,"
+→ {"12": {"4": "supporting"}}
+P4 (Principled) invokes regional conference recommendations in general; P12
+(Evidentiary) cites the same source to derive a specific factual finding about
+workforce needs. The evidence reinforces and grounds the principle.
+
+[P1|PP] "The International Conference on Education, convened in Geneva
+  by UNESCO, having met for its 33rd session, adopts the following
+  recommendation: The Conference,"
+[P7|PP] "Considering the Declaration of Principles on International Cultural
+  Cooperation adopted by the General Conference of UNESCO at its fourteenth
+  session (1966),"
+→ no relation
+P1 is a document opener with no argumentative content — structural paragraph,
+condition 2 fails.
+
+━━━ OUTPUT ━━━
+Output ONLY valid JSON. No commentary, no markdown fences.
+Keys = paragraph numbers (strings). Values = dicts mapping earlier paragraph
+numbers (strings) to: supporting, contradictive, complemental, or modifying.
+Only include paragraphs that have at least one relation.
+
+{"3": {"1": "modifying"}, "5": {"2": "complemental", "3": "supporting"}}
