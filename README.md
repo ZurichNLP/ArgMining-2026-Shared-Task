@@ -163,27 +163,45 @@ python evaluate.py --submission path/to/submission/dir --verbose
 
 ## Results
 
-Final leaderboard (silver-standard evaluation). Teams were restricted to open-weight models with ≤ 8B parameters.
+Teams were restricted to open-weight models with ≤ 8B parameters. The final ranking combines F1-based rank and LLM-as-judge rank (0.6 / 0.4 weighting).
 
-| Team | Type F1 | Tag Micro F1 | Tag Macro F1 | Pair P | Pair R | Pair F1 | Rel F1 |
-|---|---|---|---|---|---|---|---|
-| **Argchestrators** | **0.936** | 0.327 | 0.285 | 0.119 | 0.740 | 0.206 | **0.440** |
-| ResolveNow | 0.910 | 0.344 | 0.236 | 0.000 | 0.000 | 0.000 | — |
-| TypeCoT | **0.913** | 0.280 | 0.278 | 0.072 | 0.401 | 0.123 | 0.329 |
-| LLM-Instruct (run 2) | 0.891 | 0.329 | 0.254 | 0.162 | 0.270 | 0.202 | 0.350 |
-| HybridArguer | 0.891 | **0.380** | 0.224 | 0.173 | 0.713 | 0.279 | 0.389 |
-| LLM-Instruct (run 1) | 0.815 | 0.396 | **0.294** | 0.205 | 0.748 | 0.322 | 0.366 |
-| POINTERS | 0.762 | **0.459** | **0.357** | **0.208** | **0.796** | **0.330** | 0.286 |
-| Prompteam | 0.587 | 0.226 | 0.169 | 0.136 | 0.611 | 0.222 | 0.413 |
-| Ockham | 0.445 | 0.205 | 0.045 | 0.194 | 0.569 | 0.289 | 0.328 |
+### Silver-Standard Evaluation
 
-**Human ceiling (ST2):** κ = 0.540 on 233 re-annotated pairs. The best system reached κ = 0.354 (65% of human ceiling).
+Ordered by final rank. μF1 = micro-averaged; mF1 = macro-averaged. Pair F1 measures unordered pair identification; Rel F1 is weighted F1 over relation labels on correctly identified pairs only.
+
+| # | Team | Type mF1 | Tag μF1 | Tag mF1 | Pair F1 | Rel F1 |
+|---|---|---|---|---|---|---|
+| 1 | LLM-Instruct | 0.815 | 0.396 | **0.294** | 0.322 | 0.366 |
+| 2 | Prompteam | 0.587 | 0.226 | 0.169 | 0.222 | 0.413 |
+| 3 | Argchestrators | **0.936** | 0.327 | 0.285 | 0.206 | **0.440** |
+| 3 | HybridArguer | 0.891 | 0.380 | 0.224 | 0.279 | 0.389 |
+| 5 | POINTERS | 0.762 | **0.459** | **0.357** | **0.330** | 0.286 |
+| 6 | LLM-Instruct-2 | 0.891 | 0.329 | 0.254 | 0.202 | 0.350 |
+| 7 | ResolveNow | 0.910 | 0.344 | 0.236 | — | — |
+| 8 | TypeCoT | 0.913 | 0.280 | 0.278 | 0.123 | 0.329 |
+| 9 | Ockham | 0.445 | 0.205 | 0.045 | 0.289 | 0.328 |
+
+### Final Rankings
+
+| Team | F1 Rank | LLM-Judge Rank | Final Rank |
+|---|---|---|---|
+| **LLM-Instruct** | 1 | 5 | **1** |
+| Prompteam | 5 | 1 | 2 |
+| Argchestrators | 2 | 6 | 3 |
+| HybridArguer | 4 | 3 | 3 |
+| POINTERS | 3 | 9 | 5 |
+| LLM-Instruct-2 | 7 | 4 | 6 |
+| ResolveNow | 9 | 2 | 7 |
+| TypeCoT | 6 | 8 | 8 |
+| Ockham | 8 | 7 | 9 |
+
+**Human ceiling (ST2 relations):** κ = 0.540 on 233 blind re-annotated pairs. The best system reached κ = 0.354 (65% of the human ceiling).
 
 **Key findings:**
-- Paragraph type classification is largely solvable by lexical heuristics (6 of 9 runs exceed 0.89 F1).
-- Tag prediction remains difficult due to class imbalance and ontology coverage gaps.
-- All teams over-predicted relations (high recall, low precision); label ambiguity between `complemental` and `modifying` constrains the ceiling.
-- F1-based and LLM-as-judge rankings diverged substantially, suggesting complementary evaluation perspectives.
+- Type classification is largely solved by deterministic lexical rules; every team using bilingual pattern matching achieves ≥ 0.910 F1.
+- Tag prediction remains the hardest subtask; retrieval-based pre-filtering of the tag space systematically hurts rare-label recall.
+- All teams over-predict argumentative pairs regardless of architecture; the precision–recall gap reflects an inherent LLM tendency to over-connect.
+- F1 and LLM-as-judge rankings diverge substantially: Prompteam ranks 5th on F1 but 1st on reasoning quality; POINTERS ranks 3rd on F1 but 9th on judge scores.
 
 Full results: [`results/evaluation-results.csv`](results/evaluation-results.csv)
 
@@ -201,7 +219,7 @@ If you use this dataset or evaluation code, please cite our overview paper:
 
 ```bibtex
 @inproceedings{shaitarova-etal-2026-argmine,
-  title     = {{ArgMine} 2026: Reconstructing Argumentative Structure in {UN} Resolutions},
+  title     = {Overview of the {UZH} Shared Task 2026 on Reconstructing the Reasoning in {United Nations} Resolutions},
   author    = {Shaitarova, Anastassia and Gao, Yingqiang and Rezkellah, Fatma-Zohra and Gubelmann, Reto and Montjourid{\`e}s, Patrick},
   booktitle = {Proceedings of the 13th Workshop on Argument Mining and Reasoning},
   year      = {2026},
