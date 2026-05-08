@@ -243,12 +243,10 @@ The citation for the training data:
 
 ## Organizers
 
-| Name | Affiliation |
-|---|---|
-| [Anastassia Shaitarova](https://github.com/shaitarova) | University of Zurich |
-| Yingqiang Gao | University of Zurich |
-| [Reto Gubelmann](https://reto.gubelmann.com) | University of Zurich |
-| Patrick Montjouridès | UNESCO International Bureau of Education |
-| Fatma-Zohra Rezkellah | University of Zurich |
+[Anastassia Shaitarova] (https://github.com/shaitarAn)
+[Yingqiang Gao](https://github.com/CharizardAcademy)
+[Reto Gubelmann](https://retogubelmann.net/)
+[Patrick Montjouridès](https://www.ife.uzh.ch/en/research/ydesen/Staff/montjouridespatrick.html) 
+[Fatma-Zohra Rezkellah](https://www.cl.uzh.ch/de/about-us/people/team/compling/rezkellah.html)
 
 Questions and feedback: open an [issue](../../issues) or contact us at the addresses listed in the paper.
