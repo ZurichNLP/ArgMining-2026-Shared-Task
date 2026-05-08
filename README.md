@@ -66,8 +66,7 @@ Label distribution in the test corpus: `modifying` (55%), `complemental` (26%), 
 | Split | Source | Size | Labels |
 |---|---|---|---:|
 | Train | UN-RES corpus (Gao et al., 2025), UN General Assembly resolutions | 2,695 documents | raw text only |
-| Test (participant release) | UNESCO IBE International Conferences on Education (1934–2008) | 92 resolutions/recommendations | none |
-| Test (gold standard) | same as above | 92 resolutions/recommendations | types, tags, relations |
+| Test (participant release) | UNESCO IBE International Conferences on Education (1934–2008) | 92 resolutions | none |
 
 All documents are in **French** with machine-generated English translations (`gpt-4.1-mini` for test, `Helsinki-NLP/opus-mt-fr-en` for train).
 
