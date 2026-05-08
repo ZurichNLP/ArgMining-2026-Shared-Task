@@ -1,6 +1,6 @@
 # ArgMine 2026: Argument Mining in UN Resolutions
 
-**Shared Task at the 13th Workshop on Argument Mining and Reasoning ([ArgMining @ ACL 2026](https://argmining-org.github.io/2026/))**
+Shared Task at the 13th Workshop on Argument Mining and Reasoning ([ArgMining @ ACL 2026](https://argmining-org.github.io/2026/))
 ---
 
 ## Overview
