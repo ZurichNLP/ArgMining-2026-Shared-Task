@@ -243,7 +243,7 @@ The citation for the training data:
 
 ## Organizers
 
-[Anastassia Shaitarova] (https://github.com/shaitarAn)
+[Anastassia Shaitarova](https://github.com/shaitarAn)
 
 [Yingqiang Gao](https://github.com/CharizardAcademy)
 
