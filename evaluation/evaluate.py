@@ -345,40 +345,40 @@ def evaluate_human_gold(submission_dir: Path, verbose: bool = False,
 
         for row in gold_rows:
             gold_label = row["final_label"].strip()
-            if gold_label in ("", "no label"):
+            if gold_label == "":
                 continue
             px = int(row["Para X"].strip())  # later para
             py = int(row["Para Y"].strip())  # earlier para
             pair = (max(px, py), min(px, py))
-            gt_pairs.add(pair)
+            is_positive = gold_label != "no label"
+            if is_positive:
+                gt_pairs.add(pair)
 
-            # Look up submission label for this pair
+            # Check if submission predicted this pair (either direction).
+            # "no label" pairs that are predicted count as FPs.
+            sub_predicted = False
             if px in paras:
                 sub_mp = paras[px].get("matched_paras") or paras[px].get("matched_pars") or {}
                 sub_mp_str = {str(k): v for k, v in sub_mp.items()}
                 if str(py) in sub_mp_str:
+                    sub_predicted = True
                     sub_pairs.add(pair)
-                    gt_rel_labels.append(gold_label)
-                    sub_label = sub_mp_str[str(py)]
-                    sub_rel_labels.append(sub_label[0] if isinstance(sub_label, list) else sub_label)
-            if py in paras:
+                    if is_positive:
+                        gt_rel_labels.append(gold_label)
+                        sub_label = sub_mp_str[str(py)]
+                        sub_rel_labels.append(sub_label[0] if isinstance(sub_label, list) else sub_label)
+            if not sub_predicted and py in paras:
                 sub_mp = paras[py].get("matched_paras") or paras[py].get("matched_pars") or {}
                 sub_mp_str = {str(k): v for k, v in sub_mp.items()}
-                if str(px) in sub_mp_str and pair not in sub_pairs:
+                if str(px) in sub_mp_str:
                     sub_pairs.add(pair)
-                    gt_rel_labels.append(gold_label)
-                    sub_label = sub_mp_str[str(px)]
-                    sub_rel_labels.append(sub_label[0] if isinstance(sub_label, list) else sub_label)
-
-        # Count all submission pairs for this doc (for FP calculation)
-        all_sub_pairs: set[tuple] = set()
-        for para_num, para in paras.items():
-            sub_mp = para.get("matched_paras") or para.get("matched_pars") or {}
-            for tgt in sub_mp:
-                all_sub_pairs.add((max(para_num, int(tgt)), min(para_num, int(tgt))))
+                    if is_positive:
+                        gt_rel_labels.append(gold_label)
+                        sub_label = sub_mp_str[str(px)]
+                        sub_rel_labels.append(sub_label[0] if isinstance(sub_label, list) else sub_label)
 
         gt_pair_sets.append(gt_pairs)
-        sub_pair_sets.append(all_sub_pairs)
+        sub_pair_sets.append(sub_pairs)
 
     tp = fp = fn = 0
     for gt_pairs, sub_pairs in zip(gt_pair_sets, sub_pair_sets):
@@ -394,8 +394,6 @@ def evaluate_human_gold(submission_dir: Path, verbose: bool = False,
     print(f"  Recall:    {recall:.3f}")
     print(f"  F1:        {f1:.3f}")
     print(f"  (TP={tp}, FP={fp}, FN={fn})")
-    print(f"  Note: FP counts all submission pairs in these documents not in human gold,")
-    print(f"  including pairs not covered by the gold sample (low precision expected).")
 
     print("=" * 50)
     print("RELATION LABEL CLASSIFICATION (human gold)")
